@@ -1,15 +1,10 @@
 import { z } from "zod";
 
 const pattern = z.object({
-  age: z
-    .number({
-      required_error: "Idade é obrigatória!!",
-      invalid_type_error: "Formatos de dados incorretos",
-    })
-    .gte(18, "Apenas para maiores de idade!!"),
+  age: z.union([z.string(), z.number()]),
 });
 
 const result = pattern.parse({
-  age: 19,
+  age: 24,
 });
 console.log(result);
