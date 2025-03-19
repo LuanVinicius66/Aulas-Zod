@@ -1,18 +1,11 @@
-import z from "zod";
+import { z } from "zod";
 
-const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  age: z.number().min(18).max(99),
+const pattern = z.object({
+  name: z.literal('Luan'),
 });
 
-type User = z.infer<typeof schema>;
+const result = pattern.parse({
+  name: 'Luan'
+})
 
-let data = {
-  name: "Luan",
-  email: "luan.santos@rspneus.com.br",
-  age: 18,
-};
-
-const result = schema.parse(data);
 console.log(result);
